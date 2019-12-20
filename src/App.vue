@@ -24,9 +24,5 @@ export default {
   padding-right: 0;
 }
 
-#app{
-  background-color:rgb(29, 26, 32);
-}
-
 
 </style>

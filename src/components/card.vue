@@ -1,25 +1,16 @@
 <template>
 <div>
-    <b-container fluid class='homepage_background'>
-        <b-row>
-            <b-col cols="4" offset="1" class="mainHeaderWrapper">
-                <div>
-                    <h1 class="mainHeader">watch.stream.connect</h1>
-                    <b-button @click="pushUserTo" variant="none" class="browseBtn">
-                        <h4>watch now</h4>
-                    </b-button>
-                </div>
-            </b-col>
-            <!-- <b-col v-for="(streamers, index) in data" :key="index" cols="12" md="6" lg="4">
+    <b-container class="p-0">
+        <b-row no-gutters>
+            <b-col>
                 <b-card :sub-title="streamers.title" :img-src="modifyURL(streamers.thumbnail_url)" img-top tag="article" class=" streamerCard m-2">
                     <h5 class="streamerName">{{streamers.user_name}}</h5>
                     <p class="live px-2">Live</p>
                     <p class="views px-1">Views: {{streamers.viewer_count}}</p>
                 </b-card>
-            </b-col> -->
+            </b-col>
         </b-row>
     </b-container>
-
 </div>
 </template>
 
@@ -85,12 +76,7 @@ export default {
             this.newURL = url.slice(-0, -20)
             return this.newURL += "450x450.jpg";
             console.log(data);
-        },
-          pushUserTo() {
-            this.$router.push({
-                name: "browse",
-            })
-        },
+        }
     },
     created() {
         this.getStreams();
@@ -100,35 +86,51 @@ export default {
 </script>
 
 <style scoped>
-.homepage_background {
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 92.9vh;
-    background-image: url(/img/gray-scale-image-of-xbox-game-controller-194511.jpg);
-}
 
-.mainHeader {
+.card-header {
+    background-color: rgb(96, 73, 150);
     color: white;
 }
 
-.mainHeaderWrapper {
+.streamerCard {
+    background-color: white;
+    color: white;
+}
+
+.streamerCardButton {
+    background-color: rgb(96, 73, 150);
+    border-color: rgb(96, 73, 150);
+}
+
+.card-img-top {
+    height: 275px;
+}
+
+.card {
+    height: 375px;
+    -webkit-box-shadow: 0px 0px 38px -20px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 38px -20px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 38px -20px rgba(0,0,0,0.75);
+
+}
+
+.live {
     position: absolute;
-    top: 60%;
+    top: 2%;
+    background: rgba(255, 36, 36, 0.733);
+    border-radius: 15px;
 }
 
-.browseBtn {
-    color: white;
-    border: 3px solid rgb(96, 73, 150);
-    background: none;
-    border-radius: 0;
+.views {
+     position: absolute;
+    top: 66%;
+     background: rgba(0, 0, 0, 0.733);
+    border-radius: 5px;
 }
 
-.browseBtn:hover {
-    background: rgb(96, 73, 150);
-    color: white;
-    -webkit-box-shadow: 0px 0px 14px 1px rgb(96, 73, 150);
--moz-box-shadow: 0px 0px 14px 1px rgb(96, 73, 150);
-box-shadow: 0px 0px 14px 1px rgb(96, 73, 150);
+.streamerName {
+    position: absolute;
+    bottom:0;
+    color:rgb(96, 73, 150);
 }
 </style>
