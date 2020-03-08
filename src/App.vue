@@ -1,17 +1,17 @@
 <template>
   <div id="app">
     <b-container fluid class="navHeader">
-      <app-header></app-header>
+      <navbar></navbar>
     </b-container>
         <router-view></router-view>
   </div>
 </template>
 
 <script>
-import AppHeader from "./components/AppHeader.vue"
+import navbar from "./components/Header.vue"
 export default {
   components: {
-    AppHeader: AppHeader
+    navbar
   }
 }
 </script>

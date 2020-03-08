@@ -15,33 +15,13 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
     name: "home",
     data() {
         return {
-
             data: [],
             games: [],
             rawURL: "",
-            fields: [{
-                    key: "thumbnail_url",
-                    label: "thumbnail"
-                },
-                {
-                    key: "user_name",
-                    label: "User Name"
-                },
-                {
-                    key: "viewer_count",
-                    label: "Viewers"
-                },
-                {
-                    key: "type",
-                    label: "Live"
-                },
-
-            ],
             client_id: "amqpdgnbrz8x3s8wz9ytthf8r6zbv6"
         };
     },
@@ -85,7 +65,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
+::v-deep h6.card-subtitle.text-muted.mb-2 {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 .card-header {
     background-color: rgb(96, 73, 150);
@@ -108,9 +94,10 @@ export default {
 
 .card {
     height: 375px;
-    -webkit-box-shadow: 0px 0px 38px -20px rgba(0,0,0,0.75);
--moz-box-shadow: 0px 0px 38px -20px rgba(0,0,0,0.75);
-box-shadow: 0px 0px 38px -20px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 38px -20px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 38px -20px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 38px -20px rgba(0, 0, 0, 0.75);
+    
 
 }
 
@@ -122,15 +109,15 @@ box-shadow: 0px 0px 38px -20px rgba(0,0,0,0.75);
 }
 
 .views {
-     position: absolute;
+    position: absolute;
     top: 66%;
-     background: rgba(0, 0, 0, 0.733);
+    background: rgba(0, 0, 0, 0.733);
     border-radius: 5px;
 }
 
 .streamerName {
     position: absolute;
-    bottom:0;
-    color:rgb(96, 73, 150);
+    bottom: 0;
+    color: rgb(96, 73, 150);
 }
 </style>
