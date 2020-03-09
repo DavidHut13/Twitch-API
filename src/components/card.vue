@@ -65,7 +65,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
 ::v-deep h6.card-subtitle.text-muted.mb-2 {
     width: 100%;
     white-space: nowrap;
@@ -93,7 +93,6 @@ export default {
 }
 
 .card {
-    height: 375px;
     -webkit-box-shadow: 0px 0px 38px -20px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 38px -20px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 38px -20px rgba(0, 0, 0, 0.75);
