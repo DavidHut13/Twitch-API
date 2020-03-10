@@ -1,21 +1,19 @@
 <template>
 <b-container>
      <b-row>
-          <b-col v-if="topGames.length <= 0" cols="12" class="flexCenter loadingStreamers">
-               <b-button class="loadingBtn" variant="none" disabled>
-                    <b-spinner small type="grow"></b-spinner>
-                    Loading...
-               </b-button>
-          </b-col>
-          <b-col else cols="12">
-               <carousel :navigationEnabled="true" :paginationEnabled="true" :scrollPerPage="false" :autoplay="false" :perPageCustom="[[960, 8], [720, 5],[350,4]]">
-                    <slide v-for="(game,index) in topGames" :key="index">
-                         <b-card>
-                              <b-img fluid class="gameThumbnail" :src="modifyURL(game.box_art_url)"></b-img>
-                              <h5 class="gameTitle">{{game.name}}</h5>
-                         </b-card>
-                    </slide>
+          <b-col cols="12">
+               <carousel :responsive="{0:{items:2},600:{items:3},900:{items:4},1100:{items:5},1300:{items:6}}" v-if="loaded" :nav="false" :items="5">
+                    <b-card class="m-2" v-for="(game,index) in topGames" :key="index">
+                         <b-img @click="viewGames(game.name)" fluid class="gameThumbnail" :src="getPictureURL(game.box_art_url)"></b-img>
+                         <!-- <h5 class="gameTitle">{{game.name}}</h5> -->
+                    </b-card>
                </carousel>
+               <div v-if="!loaded" cols="12" class="flexCenter loadingStreamers">
+                    <b-button class="loadingBtn" variant="none" disabled>
+                         <b-spinner small type="grow"></b-spinner>
+                         Loading...
+                    </b-button>
+               </div>
           </b-col>
      </b-row>
 </b-container>
@@ -24,6 +22,7 @@
 <script>
 import axios from 'axios'
 import topStreams from '../components/topStreams.vue'
+import carousel from 'vue-owl-carousel'
 export default {
      name: "home",
      data() {
@@ -47,29 +46,67 @@ export default {
                     console.log(v.topGames)
                });
           },
-          modifyURL(url) {
+          getPictureURL(url) {
                let newURL = "";
                this.newURL = url.slice(-0, -20)
-               return this.newURL += "450x450.jpg";
+               return this.newURL += "285x380.jpg";
+          },
+          viewGames(name) {
+               var streamerURL = 'https://www.twitch.tv/directory/game/' + name;
+               console.log(streamerURL)
+               window.open(streamerURL, '_blank');
+
           }
      },
      created() {
           this.getGames();
+     },
+     computed: {
+          loaded: function () {
+               if (this.topGames.length > 0) {
+                    return true;
+               } else {
+                    return false;
+               }
+          }
+     },
+     components: {
+          carousel
      },
 }
 </script>
 
 <style scoped>
 .gameThumbnail {
-     width: 100%;
+     height: 100%;
 }
 
+::v-deep .owl-item {
+     padding: .25rem;
+}
+
+::v-deep button:focus{
+     outline-color:rgb(153, 112, 247);
+}
+::v-deep  .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background:rgb(153, 112, 247); 
+}
 .card {
-     -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
-     -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
-     box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+     -webkit-box-shadow: 0px 0px 13px -5px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 0px 0px 13px -5px rgba(0, 0, 0, 0.5);
+     box-shadow: 0px 0px 13px -9px rgba(0, 0, 0, 0.5);
      border-radius: 10px;
      overflow: hidden;
+     transition: all .2s ease-out;
+     display: inline-block;
+     border: none;
+}
+
+.card:hover {
+     transform: translateY(-4px);
+     -webkit-box-shadow: 0px 5px 14px -6px rgba(0, 0, 0, 0.75);
+     -moz-box-shadow: 0px 5px 14px -6px rgba(0, 0, 0, 0.75);
+     box-shadow: 0px 5px 14px -6px rgba(0, 0, 0, 0.75);
 }
 
 .card-body {

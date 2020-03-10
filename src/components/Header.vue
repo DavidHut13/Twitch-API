@@ -1,11 +1,11 @@
 <template>
     <div>
         <b-navbar toggleable="lg" type="light">
-            <router-link to="/" class="logo"><i class=" fas fa-users fa-lg"></i> Streamer </router-link>
+            <router-link to="/home" class="logo"><i class=" fas fa-users fa-lg"></i> Streamer </router-link>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
-                <b-nav-item href="/" right>Home</b-nav-item>
+                <b-nav-item href="/home" right>Home</b-nav-item>
                 <b-nav-item href="/browse" right>Browse</b-nav-item>
             </b-navbar-nav>
             </b-collapse>
@@ -23,16 +23,34 @@ export default {
 <style scoped>
 
 .logo{
-    color:white;
+    color:rgb(44, 44, 44);
+    text-decoration: none;
 }
+
+.logo:hover{
+    color:rgb(153, 112, 247);
+}
+
 .navbar{
-  background-color:rgb(96, 73, 150);
-  color:white;
+-webkit-box-shadow: 0px 3px 17px -12px rgba(0,0,0,0.5);
+-moz-box-shadow: 0px 3px 17px -12px rgba(0,0,0,0.5);
+box-shadow: 0px 3px 17px -12px rgba(0,0,0,0.5);
 }
 
 .navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
-    color: white;
+    color:rgb(44, 44, 44);
 }
+.nav-link{
+    border-bottom:3px solid white;
+}
+.nav-link{
+        display:inline-block;
+}
+.nav-link:hover{
+    color:rgb(153, 112, 247);
+    border-bottom:3px solid rgb(153, 112, 247);
+}
+
 </style>
 
 

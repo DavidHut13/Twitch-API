@@ -8,13 +8,14 @@
                </b-button>
           </b-col>
           <b-col else class="my-3" cols="12" md="6" lg="4" xl="3" v-for="(streamer,index) in streamers" :key="index">
-               <b-card>
-                    <b-img fluid class="videoThumbnail" :src="modifyURL(streamer.thumbnail_url)"></b-img>
+               <b-card @click="viewStream(streamer.user_name)">
+                    <b-img fluid class="videoThumbnail" :src="getPictureURL(streamer.thumbnail_url)"></b-img>
                     <div class="viewsWrapper">
                          <p class="live px-2">Live</p>
                          <p class="views px-1"><i class="far fa-eye"></i> {{streamer.viewer_count}}</p>
                     </div>
-                    <h5 class="streamerName">{{streamer.user_name}}</h5>
+                    <h5 class="streamerName ml-2 mt-2 mb-0">{{streamer.user_name}}</h5>
+                    <p class="streamTitle ml-2 mt-0 mb-1">{{streamer.title}}</p>
                </b-card>
           </b-col>
      </b-row>
@@ -29,48 +30,64 @@ export default {
           return {
                streamers: [],
                rawURL: "",
-               client_id: "amqpdgnbrz8x3s8wz9ytthf8r6zbv6"
+               client_id: "amqpdgnbrz8x3s8wz9ytthf8r6zbv6",
           };
      },
      methods: {
           getStreams() {
                let v = this;
-               
+
                const helix = axios.create({
                     baseURL: "https://api.twitch.tv/helix/",
                     headers: {
                          "Client-ID": this.client_id,
                     }
                });
-               helix.get("streams?first=10").then(function (response) {
+               helix.get("streams?first=12").then(function (response) {
                     v.streamers = response.data.data;
                     console.log(v.streamers)
                });
           },
-          modifyURL(url) {
+          getPictureURL(url) {
                let newURL = "";
                this.newURL = url.slice(-0, -20)
-               return this.newURL += "450x450.jpg";
+               return this.newURL += "440x248.jpg";
           },
-         
-     },
-      created() {
-               this.getStreams();
+          viewStream(username) {
+               var streamerURL = 'https://www.twitch.tv/' + username;
+               console.log(streamerURL)
+               window.open(streamerURL, '_blank');
+
           }
+
+     },
+     created() {
+          this.getStreams();
+     }
 }
 </script>
 
 <style scoped>
 .card {
-     -webkit-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
-     -moz-box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
-     box-shadow: 0px 0px 15px -4px rgba(0, 0, 0, 0.5);
+     -webkit-box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.5);
+     box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.5);
      border-radius: 10px;
      overflow: hidden;
+     transition: all .2s ease-in;
+     border: none;
+}
+
+.card:hover {
+     transform: translateY(-6px);
+     -webkit-box-shadow: 0px 5px 18px -10px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 0px 5px 18px -10px rgba(0, 0, 0, 0.5);
+     box-shadow: 0px 5px 18px -10px rgba(0, 0, 0, 0.5);
 }
 
 .card-body {
-     padding: 0%;
+     padding: 0;
+     margin: 0;
 }
 
 .videoThumbnail {
@@ -78,8 +95,8 @@ export default {
 }
 
 .live {
-     background: rgba(255, 36, 36, 0.733);
-     border-radius: 5px;
+     background: rgba(255, 36, 36, 0.68);
+     border-radius: 3px;
      color: white;
      display: inline-block;
      margin-right: 5px;
@@ -95,31 +112,19 @@ export default {
      background: rgba(0, 0, 0, 0.733);
      border-radius: 5px;
      color: white;
-
 }
-
-.watchNowBtn {
-     background: rgb(96, 73, 150);
-     color: white;
-
-     display: inline;
-}
-
-
 
 .streamerName {
-     color: white;
-     background: rgba(255, 255, 255, 0.562);
-     border-radius: 5px;
-     padding: 2px 10px 2px 10px;
-     position: absolute;
-     bottom: 2%;
-     left: 2%;
+     color: rgb(180, 57, 252);
+     font-family: 'Roboto Condensed', sans-serif;
+}
 
+.underline {
+     width: 10%;
 }
 
 .streamTitle {
-     width: 60%;
+     width: 90%;
      white-space: nowrap;
      overflow: hidden;
      text-overflow: ellipsis;
@@ -133,20 +138,13 @@ export default {
      left: 2%;
 }
 
-.flexCenter {
-     display: flex;
-     justify-content: center;
-     align-items: center;
-}
-
 .loadingBtn {
      background: rgb(207, 49, 255);
      color: white;
-     padding:2px 20px 2px 20px;
-     border-radius:20px;
-     -webkit-box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.5);
--moz-box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.5);
-box-shadow: 0px 0px 18px -5px rgba(0,0,0,0.5);
-
+     padding: 2px 20px 2px 20px;
+     border-radius: 20px;
+     -webkit-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
+     -moz-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
+     box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
 }
 </style>
