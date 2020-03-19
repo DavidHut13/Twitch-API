@@ -30,7 +30,7 @@ export default {
           return {
                streamers: [],
                rawURL: "",
-               client_id: "amqpdgnbrz8x3s8wz9ytthf8r6zbv6",
+               client_id: process.env.VUE_APP_twitch_KEY,
           };
      },
      methods: {
@@ -66,6 +66,12 @@ export default {
 </script>
 
 <style scoped>
+
+.flexCenter{
+     display:flex;
+     justify-content: center;
+     align-items:center;
+}
 .card {
      -webkit-box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.5);
      -moz-box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.5);
@@ -144,5 +150,8 @@ export default {
      -webkit-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
      -moz-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
      box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
+}
+.loadingStreamers {
+     height: 30vh;
 }
 </style>

@@ -29,7 +29,7 @@ export default {
      name: "home",
      data() {
           return {
-               client_id: "amqpdgnbrz8x3s8wz9ytthf8r6zbv6"
+               client_id: process.env.VUE_APP_twitch_KEY
           };
      },
      methods: {
