@@ -43,7 +43,6 @@ export default {
                });
                helix.get("games/top").then(function (response) {
                     v.topGames = response.data.data;
-                    console.log(v.topGames)
                });
           },
           getPictureURL(url) {
@@ -53,7 +52,6 @@ export default {
           },
           viewGames(name) {
                var streamerURL = 'https://www.twitch.tv/directory/game/' + name;
-               console.log(streamerURL)
                window.open(streamerURL, '_blank');
 
           }

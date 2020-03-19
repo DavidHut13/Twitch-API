@@ -45,7 +45,6 @@ export default {
                });
                helix.get("streams?first=12").then(function (response) {
                     v.streamers = response.data.data;
-                    console.log(v.streamers)
                });
           },
           getPictureURL(url) {
@@ -55,7 +54,6 @@ export default {
           },
           viewStream(username) {
                var streamerURL = 'https://www.twitch.tv/' + username;
-               console.log(streamerURL)
                window.open(streamerURL, '_blank');
 
           }
