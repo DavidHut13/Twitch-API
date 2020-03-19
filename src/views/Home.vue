@@ -43,7 +43,6 @@ export default {
                });
                helix.get("streams?first=10").then(function (response) {
                     v.data = response.data.data;
-                    console.log(v.data)
                });
           },
           getGames() {
@@ -62,7 +61,6 @@ export default {
                let newURL = "";
                this.newURL = url.slice(-0, -20)
                return this.newURL += "450x450.jpg";
-               console.log(data);
           },
           pushUserTo() {
                this.$router.push({
