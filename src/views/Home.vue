@@ -73,7 +73,7 @@ export default {
      background-position: center;
      background-repeat: no-repeat;
      background-size: cover;
-     height: 92.6vh;
+     height: 94.15vh;
      background-image: url(/img/gray-scale-image-of-xbox-game-controller-194511.jpg);
 }
 

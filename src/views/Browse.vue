@@ -1,6 +1,6 @@
 <template>
 <div>
-     <b-container fluid>
+     <b-container class="browseWrapper" fluid>
           <b-row>
                <b-col cols="12" class="mt-5 text-center">
                     <h2 class="catagoryHeader">Top Games</h2>
@@ -45,6 +45,9 @@ export default {
 </script>
 
 <style scoped>
+.browseWrapper{
+      overflow-x: hidden
+}
 .underline{
      width:25%;
 }
