@@ -2,9 +2,9 @@
 <div>
      <b-container fluid class='homepage_background'>
           <b-row>
-               <b-col cols="4" offset="1" class="mainHeaderWrapper">
+               <b-col cols="12" md="4" offset-md="1" class="mainHeaderWrapper">
                     <div>
-                         <h1 class="mainHeader">watch. stream. connect.</h1>
+                         <h1 class="mainHeader mb-3">watch. stream. connect.</h1>
                          <b-button @click="pushUserTo" variant="none" class="browseBtn">
                               <h4>watch now</h4>
                          </b-button>
@@ -73,7 +73,7 @@ export default {
      background-position: center;
      background-repeat: no-repeat;
      background-size: cover;
-     height: 95vh;
+     height: 92.6vh;
      background-image: url(/img/gray-scale-image-of-xbox-game-controller-194511.jpg);
 }
 

@@ -40,13 +40,13 @@ box-shadow: 0px 3px 17px -12px rgba(0,0,0,0.5);
 .navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
     color:rgb(44, 44, 44);
 }
-.nav-link{
+
+::v-deep  .nav-link{
     border-bottom:3px solid white;
+    display:inline-block;
 }
-.nav-link{
-        display:inline-block;
-}
-.nav-link:hover{
+
+::v-deep .nav-link:hover{
     color:rgb(153, 112, 247);
     border-bottom:3px solid rgb(153, 112, 247);
 }
