@@ -5,7 +5,7 @@
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
-                <b-nav-item href="/home" right>Home</b-nav-item>
+                <b-nav-item href="/" right>Home</b-nav-item>
                 <b-nav-item href="/browse" right>Browse</b-nav-item>
             </b-navbar-nav>
             </b-collapse>
