@@ -1,12 +1,12 @@
 <template>
     <div>
         <b-navbar toggleable="lg" type="light">
-            <router-link to="/home" class="logo"><i class=" fas fa-users fa-lg"></i> Streamer </router-link>
+            <router-link to="/" class="logo"><i class=" fas fa-users fa-lg"></i> Streamer </router-link>
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
             <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav class="ml-auto">
-                <b-nav-item href="/" right>Home</b-nav-item>
-                <b-nav-item href="/browse" right>Browse</b-nav-item>
+                <router-link to="/" right tag="b-nav-item">Home</router-link>
+                <router-link to="/browse" right tag="b-nav-item">Browse</router-link>
             </b-navbar-nav>
             </b-collapse>
         </b-navbar>
