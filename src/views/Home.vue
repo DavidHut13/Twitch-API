@@ -10,13 +10,6 @@
                          </b-button>
                     </div>
                </b-col>
-               <!-- <b-col v-for="(streamers, index) in data" :key="index" cols="12" md="6" lg="4">
-                <b-card :sub-title="streamers.title" :img-src="modifyURL(streamers.thumbnail_url)" img-top tag="article" class=" streamerCard m-2">
-                    <h5 class="streamerName">{{streamers.user_name}}</h5>
-                    <p class="live px-2">Live</p>
-                    <p class="views px-1">Views: {{streamers.viewer_count}}</p>
-                </b-card>
-            </b-col> -->
           </b-row>
      </b-container>
 
