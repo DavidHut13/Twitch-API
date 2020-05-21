@@ -10,10 +10,10 @@
             </carousel>
         </b-col>
         <b-col cols="12" v-if="!loaded" class="flexCenter loadingStreamers">
-                <b-button class="loadingBtn" variant="none" disabled>
-                    <b-spinner small type="grow"></b-spinner>
-                    Loading...
-                </b-button>
+            <b-button class="loadingBtn" variant="none" disabled>
+                <b-spinner small type="grow"></b-spinner>
+                Loading...
+            </b-button>
         </b-col>
     </b-row>
 </b-container>
@@ -29,7 +29,9 @@ export default {
         return {
             topGames: [],
             rawURL: "",
-            client_id: process.env.VUE_APP_twitch_KEY
+            client_id: process.env.VUE_APP_twitch_KEY,
+            client_secret: process.env.VUE_APP_twitch_secret,
+            my_access_token: null
         };
     },
     methods: {
@@ -38,12 +40,23 @@ export default {
             const helix = axios.create({
                 baseURL: "https://api.twitch.tv/helix/",
                 headers: {
-                    "Client-ID": this.client_id,
+                    "Authorization": "Bearer " + this.my_access_token,
+                    "client-ID": this.client_id
                 }
             });
             helix.get("games/top").then(function (response) {
                 v.topGames = response.data.data;
             });
+
+        },
+        getOAuth() {
+            let v = this;
+            axios.post('https://id.twitch.tv/oauth2/token?client_id=' + v.client_id + "&client_secret=" + v.client_secret + "&grant_type=client_credentials" + '&scope=analytics:read:games')
+                .then(function (response) {
+                    v.my_access_token = response.data.access_token
+                    v.$store.dispatch('saveAccessToken',v.my_access_token)
+                    v.getGames()
+                })
         },
         getPictureURL(url) {
             let newURL = "";
@@ -57,7 +70,7 @@ export default {
         }
     },
     created() {
-        this.getGames();
+        this.getOAuth();
     },
     computed: {
         loaded: function () {
@@ -130,20 +143,22 @@ export default {
 }
 
 .loadingBtn {
-     background: rgb(207, 49, 255);
-     color: white;
-     padding: 2px 20px 2px 20px;
-     border-radius: 20px;
-     -webkit-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
-     -moz-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
-     box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
+    background: rgb(207, 49, 255);
+    color: white;
+    padding: 2px 20px 2px 20px;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 18px -5px rgba(0, 0, 0, 0.5);
 }
+
 .loadingStreamers {
-     height: 20vh;
+    height: 20vh;
 }
-.flexCenter{
-     display:flex;
-     justify-content: center;
-     align-items:center;
+
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>
