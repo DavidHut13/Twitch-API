@@ -20,51 +20,14 @@
 import axios from "axios";
 export default {
      name: "home",
-     data() {
-          return {
-               client_id: process.env.VUE_APP_twitch_KEY
-          };
-     },
      methods: {
-          getStreams() {
-               let v = this;
-               const helix = axios.create({
-                    baseURL: "https://api.twitch.tv/helix/",
-                    headers: {
-                         "Client-ID": this.client_id
-                    }
-               });
-               helix.get("streams?first=10").then(function (response) {
-                    v.data = response.data.data;
-               });
-          },
-          getGames() {
-               let v = this;
-               const helix = axios.create({
-                    baseURL: "https://api.twitch.tv/helix/",
-                    headers: {
-                         "Client-ID": this.client_id
-                    }
-               });
-               helix.get("games/top").then(function (response) {
-                    v.games = response.data.data;
-               });
-          },
-          modifyURL(url) {
-               let newURL = "";
-               this.newURL = url.slice(-0, -20)
-               return this.newURL += "450x450.jpg";
-          },
           pushUserTo() {
                this.$router.push({
                     name: "browse",
                })
           },
      },
-     created() {
-          this.getStreams();
-          this.getGames();
-     }
+
 };
 </script>
 
